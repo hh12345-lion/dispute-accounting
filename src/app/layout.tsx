@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { DM_Sans, Fraunces } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsentRoot } from "@/components/cookies/CookieConsentRoot";
@@ -7,17 +7,23 @@ import { ConsentDefaultsScript } from "@/components/cookies/ConsentDefaultsScrip
 import { createMetadata } from "@/lib/metadata";
 import "./globals.css";
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Dispute Accounting | Forensic Accountants for Litigation & Commercial Disputes",
+    "Dispute Accounting | Global Forensic Accountants for Litigation & Arbitration",
   description:
-    "Expert dispute accounting for legal teams and businesses. Forensic accountants for loss quantification, fraud investigation, shareholder disputes, and expert witness reports.",
+    "Connect with qualified dispute accountants worldwide. Loss quantification, fraud investigation, asset tracing, valuation, and court-compliant expert witness reports across jurisdictions.",
   path: "/",
 });
 
@@ -27,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`}>
+    <html lang="en" className={`${dmSans.variable} ${fraunces.variable} h-full`}>
       <body className="flex min-h-full flex-col antialiased">
         <ConsentDefaultsScript />
         <CookieConsentRoot>

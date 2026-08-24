@@ -60,8 +60,6 @@ export default function QualificationsPage() {
             Relevant for valuation-heavy dispute accounting and investment
             disputes in financial services.
           </p>
-          <h3>CVA / ABV</h3>
-          <p>Business valuation credentials for contentious valuation work.</p>
           <h3>ICAEW Forensic & Expert Witness Accreditation</h3>
           <p>
             ICAEW&apos;s specialist accreditation for forensic accounting and

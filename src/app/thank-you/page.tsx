@@ -82,7 +82,7 @@ export default function ThankYouPage() {
           <div className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center sm:gap-4">
             <Link
               href="/"
-              className="inline-flex min-h-[44px] items-center justify-center rounded bg-accent px-8 py-3 font-semibold text-white hover:bg-[#8f4f17]"
+              className="inline-flex min-h-[44px] items-center justify-center rounded bg-accent px-8 py-3 font-semibold text-white hover:bg-accent-hover"
             >
               Return to Homepage
             </Link>

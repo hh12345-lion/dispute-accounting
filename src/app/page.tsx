@@ -30,11 +30,11 @@ const serviceCards = [
 ];
 
 const stats = [
-  ["Typical hourly rate", "£150–£500/hr", "Industry average"],
+  ["Global coverage", "Worldwide", "Cross-jurisdiction matters"],
   ["Court framework (civil)", "CPR Part 35", "Civil Procedure Rules"],
   ["Court framework (family)", "FPR Part 25", "Family Procedure Rules"],
   ["Primary credential", "ACA/FCA + CFE", "ICAEW / ACFE"],
-  ["Grant Thornton disputes ranking", "Band 1", "Chambers & Partners 2025"],
+  ["Expert roles", "PAE, SJE, Advisory", "Litigation & arbitration"],
   ["Typical report completion", "4–12 weeks", "Case-dependent"],
   ["Available as SJE", "Yes", "CPR 35.7"],
 ];
@@ -54,20 +54,20 @@ export default function HomePage() {
     <>
       <JsonLd data={homepageSchema} />
       <PageHero
-        title="Dispute Accounting Services for Legal Teams & Businesses"
-        subtitle="When financial complexity meets legal conflict, you need a forensic accountant who speaks both languages, accounting and litigation. DisputeAccounting.com connects legal teams and businesses with qualified dispute accountants who quantify losses, investigate fraud, trace assets, and deliver court-compliant expert witness reports."
+        title="Dispute Accounting for Legal Teams & Businesses Worldwide"
+        subtitle="When financial complexity meets legal conflict, you need forensic accountants who understand both accounting and litigation. DisputeAccounting connects legal teams and businesses globally with qualified dispute accountants for loss quantification, fraud investigation, asset tracing, and court-compliant expert reports."
       />
       <Section>
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link
             href="/who-we-help/solicitors-law-firms"
-            className="inline-flex min-h-[44px] w-full items-center justify-center rounded bg-accent px-8 py-3 font-semibold text-white transition-colors hover:bg-[#8f4f17] sm:w-auto"
+            className="inline-flex min-h-[44px] w-full items-center justify-center rounded-full bg-accent px-8 py-3 font-semibold text-white transition-colors hover:bg-accent-hover sm:w-auto"
           >
-            I&apos;m a Solicitor
+            I&apos;m a Legal Professional
           </Link>
           <Link
             href="/who-we-help/businesses-individuals"
-            className="inline-flex min-h-[44px] w-full items-center justify-center rounded border-2 border-primary px-8 py-3 font-semibold text-primary transition-colors hover:bg-section-alt sm:w-auto"
+            className="inline-flex min-h-[44px] w-full items-center justify-center rounded-full border-2 border-primary px-8 py-3 font-semibold text-primary transition-colors hover:bg-section-alt sm:w-auto"
           >
             I&apos;m a Business
           </Link>
@@ -75,7 +75,7 @@ export default function HomePage() {
       </Section>
 
       <Section alt>
-        <h2 className="text-2xl font-bold text-heading sm:text-3xl">
+        <h2 className="font-display text-2xl font-semibold text-heading sm:text-3xl">
           What Our Dispute Accountants Cover
         </h2>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -86,7 +86,7 @@ export default function HomePage() {
       </Section>
 
       <Section>
-        <h2 className="text-2xl font-bold text-heading sm:text-3xl">
+        <h2 className="font-display text-2xl font-semibold text-heading sm:text-3xl">
           Dispute Accounting: Key Facts
         </h2>
         <ResponsiveTable className="mt-6">
@@ -122,31 +122,30 @@ export default function HomePage() {
           </table>
         </ResponsiveTable>
         <p className="mt-4 text-sm text-body/80">
-          Sources: Chambers and Partners 2025; Civil Procedure Rules Part 35;
-          Association of Certified Fraud Examiners. Rates are indicative.
+          Sources: Civil Procedure Rules Part 35; Association of Certified Fraud
+          Examiners. Timelines vary by jurisdiction and case complexity.
         </p>
       </Section>
 
       <Section alt>
-        <h2 className="text-2xl font-bold text-heading sm:text-3xl">
+        <h2 className="font-display text-2xl font-semibold text-heading sm:text-3xl">
           Who Uses Dispute Accounting?
         </h2>
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <Card
-            title="Solicitors & Law Firms"
+            title="Legal Teams & Law Firms"
             href="/who-we-help/solicitors-law-firms"
-            description="You need an independent forensic accountant who produces CPR Part 35 compliant expert reports, gives credible oral evidence, and withstands cross-examination."
+            description="Independent forensic accountants who produce court-compliant expert reports, give credible oral evidence, and withstand cross-examination in litigation and arbitration."
           />
           <Card
             title="Businesses & Individuals"
             href="/who-we-help/businesses-individuals"
-            description="You've discovered fraud, you're in a shareholder dispute, or your M&A deal has gone wrong. You need a dispute accountant to investigate and quantify the financial position."
+            description="Facing fraud, shareholder conflict, or a failed transaction? A dispute accountant investigates and quantifies the financial position before or during proceedings."
           />
         </div>
         <p className="mt-8 text-body leading-relaxed">
-          <strong className="text-heading">Dispute accounting</strong> is the
-          forensic accounting industry&apos;s term for applying accounting
-          expertise to legal disputes, expert witness reports, loss
+          <strong className="text-heading">Dispute accounting</strong> applies
+          accounting expertise to legal disputes — expert witness reports, loss
           quantification, fraud investigation, and more.{" "}
           <Link href="/what-is-dispute-accounting" className="text-accent underline">
             Read our full definition →

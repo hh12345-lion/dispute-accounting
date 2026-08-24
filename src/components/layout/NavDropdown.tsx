@@ -78,7 +78,7 @@ export function NavDropdown({ label, href, items, onNavigate }: NavDropdownProps
       </div>
 
       {open && (
-        <div className="absolute left-0 top-full z-50 mt-0 min-w-[240px] max-w-[min(340px,calc(100vw-2rem))] rounded-[8px] border border-border bg-white py-2 shadow-lg">
+        <div className="absolute left-0 top-full z-50 mt-0 min-w-[240px] max-w-[min(340px,calc(100vw-2rem))] rounded-lg border border-border bg-white py-2 shadow-lg">
           <ul className="max-h-[min(70vh,24rem)] overflow-y-auto overscroll-contain">
             {items.map((item) => (
               <li key={item.href + item.label}>

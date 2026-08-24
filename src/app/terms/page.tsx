@@ -20,8 +20,8 @@ export default function TermsPage() {
           <h2>About This Service</h2>
           <p>
             DisputeAccounting.com is a referral and matching service that
-            connects legal teams, barristers, and law firms with qualified
-            contract loss expert witnesses. We are not a law firm and do not
+            connects legal teams, businesses, and individuals with qualified
+            dispute accountants worldwide. We are not a law firm and do not
             provide legal advice.
           </p>
 
@@ -29,7 +29,7 @@ export default function TermsPage() {
           <p>
             Submitting an enquiry does not create a solicitor-client relationship
             with DisputeAccounting.com. Any engagement is directly between you
-            and the instructed expert witness.
+            and the instructed expert.
           </p>
 
           <h2>Expert Selection</h2>
@@ -39,11 +39,11 @@ export default function TermsPage() {
             the responsibility of the instructing solicitor.
           </p>
 
-          <h2>Fees</h2>
+          <h2>Expert Engagement</h2>
           <p>
-            Expert witness fees are agreed directly between the instructing party
-            and the expert. We do not charge referral fees to solicitors unless
-            separately agreed in writing.
+            Terms of engagement with experts are agreed directly between the
+            instructing party and the expert. We do not charge referral fees to
+            legal teams unless separately agreed in writing.
           </p>
 
           <h2>Limitation of Liability</h2>

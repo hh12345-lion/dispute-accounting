@@ -347,11 +347,11 @@ const guides: GuidePage[] = [
     metaTitle:
       "How to Instruct a Dispute Accountant | Letter of Instruction & CPR Part 35",
     metaDescription:
-      "Solicitor guide to instructing dispute accountants: preliminary review, letter of instruction, documents, fees, CPR Part 35 compliance, and single joint expert joint instructions.",
+      "Solicitor guide to instructing dispute accountants: preliminary review, letter of instruction, documents, CPR Part 35 compliance, and single joint expert joint instructions.",
     aboutServiceId: "expert-witness-reports",
     paragraphs: [
-      "The quality of accounting expert evidence depends on the instruction. A clear letter of instruction aligns the expert's work with the pleaded case, defines scope, and satisfies CPR Part 35 requirements. Poor instructions produce unfocused reports, scope disputes on fees, and vulnerable evidence at trial.",
-      "This guide covers preliminary assessment, essential contents of the instruction, document packs, fee agreements, Part 35 duties, and joint instruction of a single joint expert.",
+      "The quality of accounting expert evidence depends on the instruction. A clear letter of instruction aligns the expert's work with the pleaded case, defines scope, and satisfies CPR Part 35 requirements. Poor instructions produce unfocused reports, scope disputes, and vulnerable evidence at trial.",
+      "This guide covers preliminary assessment, essential contents of the instruction, document packs, engagement terms, Part 35 duties, and joint instruction of a single joint expert.",
     ],
     sections: [
       {
@@ -362,7 +362,7 @@ const guides: GuidePage[] = [
       {
         heading: "Essential Contents of the Letter of Instruction",
         content:
-          "Every letter of instruction should include: parties and proceedings reference; the expert's defined role (CPR Part 35 expert, adviser, or determiner); background facts agreed and in dispute; legal framework and measure of damages; specific questions for the expert; documents provided and anticipated further disclosure; timetable and hearing date; fee basis; and confirmation of the expert's overriding duty to the court.\n\nAvoid asking the expert to 'support the claimant's case.' CPR Part 35.3 requires independence. Questions should be neutral and precise, for example: 'What was the claimant's lost gross profit between [dates] but for the breach, and what assumptions underpin that figure?'\n\n| Element | Purpose |\n| --- | --- |\n| Specific questions | Define scope and report structure |\n| Agreed/disputed facts | Focus analysis |\n| Legal framework | Align measure of damages |\n| Assumptions on liability | Alternative scenarios if needed |\n| Timetable | Manage court deadlines |",
+          "Every letter of instruction should include: parties and proceedings reference; the expert's defined role (CPR Part 35 expert, adviser, or determiner); background facts agreed and in dispute; legal framework and measure of damages; specific questions for the expert; documents provided and anticipated further disclosure; timetable and hearing date; and confirmation of the expert's overriding duty to the court.\n\nAvoid asking the expert to 'support the claimant's case.' CPR Part 35.3 requires independence. Questions should be neutral and precise, for example: 'What was the claimant's lost gross profit between [dates] but for the breach, and what assumptions underpin that figure?'\n\n| Element | Purpose |\n| --- | --- |\n| Specific questions | Define scope and report structure |\n| Agreed/disputed facts | Focus analysis |\n| Legal framework | Align measure of damages |\n| Assumptions on liability | Alternative scenarios if needed |\n| Timetable | Manage court deadlines |",
       },
       {
         heading: "Documents to Provide",
@@ -370,14 +370,14 @@ const guides: GuidePage[] = [
           "Core documents for commercial loss claims: contract and variations; correspondence on breach and mitigation; audited accounts (three years pre-breach); management accounts for the loss period; budgets and forecasts; invoices for wasted expenditure; and prior expert reports.\n\nShareholder disputes: Companies House filings, SHA, board minutes, dividend records. M&A: SPA, disclosure letter, completion accounts, due diligence files. Fraud: bank statements, general ledger, payroll, CRM exports. Construction: contract with amendments, programmes, EOT notices, cost ledgers.\n\nOrganise documents with an index; use a data room for large matters. Confirm litigation hold covers email, ERP, and cloud storage before the expert begins.",
       },
       {
-        heading: "Fee Agreement and Timetable",
+        heading: "Engagement Agreement and Timetable",
         content:
-          "Agree fees in writing before work starts: hourly rates by grade; estimated hours per phase; fixed fee for defined scope where appropriate; disbursements; payment terms; and procedure if scope expands. Contingency or success-based expert fees are impermissible, the expert must have no interest in the outcome.\n\nMilestones might include: document review and request list (2 weeks); draft report (4–8 weeks); final report after comments; joint meeting; trial attendance. Urgent adjudication or injunction support requires agreed premium rates and availability.",
+          "Agree scope, deliverables, and timetable in writing before work starts. Contingency or success-based expert fees are impermissible — the expert must have no interest in the outcome.\n\nMilestones might include: document review and request list (2 weeks); draft report (4–8 weeks); final report after comments; joint meeting; trial attendance. Urgent adjudication or injunction support requires agreed availability and turnaround times.",
       },
       {
         heading: "CPR Part 35 and Single Joint Expert Instructions",
         content:
-          "Practice Direction 35 requires the expert report to contain: the expert's qualifications; material instructions; documents relied upon; factual assumptions; opinions and range of opinion; statement that the expert understands the duty to the court; and declaration of compliance.\n\nFor a single joint expert (SJE), both parties must agree the joint instruction, typically signed by both solicitors after circulating a draft. Agree: neutral questions; simultaneous document provision; fee sharing; procedure for supplemental questions; and dispute resolution on instruction disagreements (CPR 35.7 court application).\n\nSJE instructions must not favour one party's formulation. Party-appointed experts remain common in high-value disputes where adversarial testing is required. The Ikarian Reefer [1993] principles, independence, transparency, and assistance to the tribunal, apply to all expert roles.",
+          "Practice Direction 35 requires the expert report to contain: the expert's qualifications; material instructions; documents relied upon; factual assumptions; opinions and range of opinion; statement that the expert understands the duty to the court; and declaration of compliance.\n\nFor a single joint expert (SJE), both parties must agree the joint instruction, typically signed by both solicitors after circulating a draft. Agree: neutral questions; simultaneous document provision; procedure for supplemental questions; and dispute resolution on instruction disagreements (CPR 35.7 court application).\n\nSJE instructions must not favour one party's formulation. Party-appointed experts remain common in high-value disputes where adversarial testing is required. The Ikarian Reefer [1993] principles, independence, transparency, and assistance to the tribunal, apply to all expert roles.",
       },
     ],
     faqs: [

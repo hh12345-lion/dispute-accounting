@@ -167,7 +167,7 @@ export function CookiePreferencesPanel({ onClose }: CookiePreferencesPanelProps)
             See our{" "}
             <Link
               href="/cookies"
-              className="text-accent underline hover:text-[#8f4f17]"
+              className="text-accent underline hover:text-accent-hover"
               onClick={onClose}
             >
               Cookie Policy
@@ -175,7 +175,7 @@ export function CookiePreferencesPanel({ onClose }: CookiePreferencesPanelProps)
             and{" "}
             <Link
               href="/privacy"
-              className="text-accent underline hover:text-[#8f4f17]"
+              className="text-accent underline hover:text-accent-hover"
               onClick={onClose}
             >
               Privacy Policy
@@ -195,7 +195,7 @@ export function CookiePreferencesPanel({ onClose }: CookiePreferencesPanelProps)
           <button
             type="button"
             onClick={handleSave}
-            className="min-h-[44px] rounded bg-accent px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#8f4f17] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+            className="min-h-[44px] rounded bg-accent px-5 py-2.5 text-sm font-semibold text-white hover:bg-accent-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
           >
             Save Preferences
           </button>

@@ -26,11 +26,10 @@ export default function PrivacyPage() {
 
           <h2>What Data We Collect</h2>
           <p>
-            When you submit an enquiry form, we collect your name, organisation,
-            email address, phone number (if provided), and case details you
-            choose to share. We process contact form submissions via a secure
-            webhook to our internal systems (and optionally Formspree as a
-            backup when configured).
+            When you submit an enquiry form, we collect your name, email address,
+            organisation (if provided), and any message you choose to share. We
+            process contact form submissions via a secure webhook to our internal
+            systems (and optionally Formspree as a backup when configured).
           </p>
 
           <h2>Lawful Basis</h2>
@@ -43,8 +42,8 @@ export default function PrivacyPage() {
           <h2>How We Use Your Data</h2>
           <p>
             We use your data solely to respond to your enquiry, match you with
-            qualified contract loss expert witnesses, and communicate about your
-            case. We do not sell your data to third parties.
+            qualified dispute accountants, and communicate about your case. We do
+            not sell your data to third parties.
           </p>
 
           <h2>Data Retention</h2>
@@ -75,8 +74,8 @@ export default function PrivacyPage() {
           <h2>International Transfers</h2>
           <p>
             Form data may be processed by our automation provider and, if used,
-            Formspree (US-based). Appropriate safeguards are in place including
-            Standard Contractual Clauses where applicable.
+            third-party form services outside your country. Appropriate safeguards
+            are in place including Standard Contractual Clauses where applicable.
           </p>
 
           <p className="text-sm text-body/70">Last updated: May 2025</p>

@@ -64,7 +64,7 @@ export default function NotFound() {
 
           <Link
             href="/"
-            className="mt-8 inline-flex min-h-[44px] w-full items-center justify-center rounded bg-accent px-8 py-3 font-semibold text-white hover:bg-[#8f4f17] sm:w-auto"
+            className="mt-8 inline-flex min-h-[44px] w-full items-center justify-center rounded bg-accent px-8 py-3 font-semibold text-white hover:bg-accent-hover sm:w-auto"
           >
             Return to Homepage
           </Link>

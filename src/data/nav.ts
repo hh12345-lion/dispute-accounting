@@ -65,12 +65,11 @@ export const navResourcesMenuLinks = [
   { href: "/qualifications", label: "Qualifications" },
 ];
 
-/** Footer & secondary links, includes glossary, FAQ, fees */
+/** Footer & secondary links */
 export const navResourceLinks = [
   { href: "/guides", label: "Guides" },
   { href: "/glossary", label: "Glossary" },
   { href: "/faq", label: "FAQ" },
-  { href: "/fees", label: "Fees" },
   { href: "/how-to-instruct", label: "How to Instruct" },
   { href: "/what-is-dispute-accounting", label: "What Is Dispute Accounting?" },
 ];

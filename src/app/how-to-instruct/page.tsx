@@ -34,7 +34,7 @@ const solicitorSteps = [
   {
     title: "Credentials Check",
     content:
-      "ACA for accounting; CFE for fraud; CVA/ABV for valuation; sector experience relevant to the dispute.",
+      "ACA for accounting; CFE for fraud; ICAEW/CFA for valuation; sector experience relevant to the dispute.",
   },
   {
     title: "Preliminary Review",
@@ -44,7 +44,7 @@ const solicitorSteps = [
   {
     title: "Letter of Instruction",
     content:
-      "Scope, specific questions, documents, fee agreement, and timetable. Joint letter for SJE appointments.",
+      "Scope, specific questions, documents, and timetable. Joint letter for SJE appointments.",
   },
   {
     title: "Provide Documents",
@@ -80,9 +80,9 @@ const businessSteps = [
       "The dispute accountant can liaise with your solicitors if proceedings follow, providing continuity of analysis.",
   },
   {
-    title: "Fee Agreement",
+    title: "Written Agreement",
     content:
-      "Agree hourly rates, scope, and deliverables in writing before work commences.",
+      "Agree scope and deliverables in writing before work commences.",
   },
   {
     title: "Ongoing Advisory",
@@ -93,7 +93,7 @@ const businessSteps = [
 
 const timeline = [
   ["Day 1–3", "Enquiry submitted", "Initial response within 1 business day"],
-  ["Week 1", "Preliminary review", "Scope and fee estimate agreed"],
+  ["Week 1", "Preliminary review", "Scope agreed"],
   ["Week 1–2", "Instruction letter signed", "Documents provided"],
   ["Weeks 2–8", "Analysis and investigation", "Interim queries addressed"],
   ["Weeks 4–12", "Draft report", "Comments incorporated"],
@@ -192,7 +192,7 @@ export default function HowToInstructPage() {
             <li>Cannot provide examples of CPR Part 35 reports</li>
             <li>Unwilling to confirm independence in writing</li>
             <li>No professional indemnity insurance</li>
-            <li>Fee estimate significantly below market without explanation</li>
+            <li>Scope or timetable promises that seem unrealistic without explanation</li>
           </ul>
           <p>
             <Link href="/guides/instructing-dispute-accountant" className="text-accent">
@@ -201,10 +201,6 @@ export default function HowToInstructPage() {
             |{" "}
             <Link href="/qualifications" className="text-accent">
               Qualifications →
-            </Link>{" "}
-            |{" "}
-            <Link href="/fees" className="text-accent">
-              Fees →
             </Link>
           </p>
         </article>

@@ -26,7 +26,6 @@ export const APP_STATIC_PATHS = [
   "/what-is-dispute-accounting",
   "/qualifications",
   "/how-to-instruct",
-  "/fees",
   "/faq",
   "/guides",
   "/experts",
@@ -109,11 +108,7 @@ export function getSitemapPriority(path: string): number {
   ) {
     return 0.9;
   }
-  if (
-    path === "/qualifications" ||
-    path === "/how-to-instruct" ||
-    path === "/fees"
-  ) {
+  if (path === "/qualifications" || path === "/how-to-instruct") {
     return 0.88;
   }
   if (path.startsWith("/case-types/")) return 0.88;

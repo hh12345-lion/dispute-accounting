@@ -34,11 +34,6 @@ export const faqs: FAQ[] = [
       "A Single Joint Expert is appointed jointly by both parties or directed by the court to provide one opinion on a defined issue, reducing duplication of costs. A Party-Appointed Expert is instructed separately by each side and produces their own report, followed typically by a joint meeting and joint statement. SJE appointment suits narrower, agreed issues; PAE appointment is common in high-value disputes where each party wants independent analysis.",
   },
   {
-    question: "How much does a dispute accountant cost?",
-    answer:
-      "Dispute accountants typically charge £250–£600 per hour for senior practitioners, with leading experts in complex matters charging £650–£1,000 or more. A standard quantum report may cost £8,000–£20,000; complex multi-issue engagements involving valuation, tracing, and fraud can exceed £50,000. Total cost depends on document volume, number of heads of loss, joint expert meetings, and whether oral evidence is required.",
-  },
-  {
     question: "What credentials should a dispute accountant hold?",
     answer:
       "Look for ACA or FCA (ICAEW), ACCA or FCCA, CFA, or CFE credentials with demonstrable forensic and litigation experience. For construction-related quantum, MRICS or FRICS is relevant. Beyond qualifications, the expert should have a track record of CPR Part 35 or FPR Part 25 compliant reports, professional indemnity insurance, and experience giving oral evidence. Sector expertise, financial services, property, technology, is often as important as the credential itself.",

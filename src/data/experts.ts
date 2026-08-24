@@ -19,10 +19,10 @@ export const experts: Expert[] = [
     ],
   },
   {
-    name: "James Harrington ACA ABV",
+    name: "James Harrington ACA",
     jobTitle: "Dispute Accountant, Valuation & Shareholder Disputes",
     description:
-      "James is an ICAEW chartered accountant and Accredited in Business Valuation (ABV) with extensive experience in share valuation for unfair prejudice petitions under Companies Act 2006 s994, M&A completion accounts disputes, and matrimonial business valuations under FPR Part 25. He has prepared joint expert reports and given evidence in the Chancery Division and Family Court.",
+      "James is an ICAEW chartered accountant with extensive experience in share valuation for unfair prejudice petitions under Companies Act 2006 s994, M&A completion accounts disputes, and matrimonial business valuations under FPR Part 25. He has prepared joint expert reports and given evidence in the Chancery Division and Family Court.",
     credentials: [
       "Share valuation",
       "M&A disputes",

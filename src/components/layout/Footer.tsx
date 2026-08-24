@@ -2,149 +2,113 @@ import Link from "next/link";
 import { SiteEmailLink } from "@/components/SiteEmailLink";
 import { CookieSettingsButton } from "@/components/cookies/CookieSettingsButton";
 
-const servicesCol = [
-  { href: "/services#loss-quantification", label: "Loss Quantification" },
-  { href: "/services#fraud-investigation", label: "Fraud Investigation" },
-  { href: "/services#asset-tracing", label: "Asset Tracing" },
-  { href: "/services#business-share-valuation", label: "Business Valuation" },
+const linkGroups = [
   {
-    href: "/services#shareholder-partnership-disputes",
-    label: "Shareholder Disputes",
+    label: "Practice",
+    links: [
+      { href: "/services", label: "Services" },
+      { href: "/dispute-types", label: "Dispute types" },
+      { href: "/case-types", label: "Case types" },
+      { href: "/sectors", label: "Sectors" },
+    ],
   },
-  { href: "/services#ma-transaction-disputes", label: "M&A Disputes" },
-  { href: "/services#matrimonial-financial", label: "Matrimonial Financial" },
-  { href: "/services#expert-witness-reports", label: "Expert Witness Reports" },
-];
-
-const caseTypesCol = [
   {
-    href: "/case-types/commercial-contract-disputes",
-    label: "Commercial Contracts",
+    label: "Audience",
+    links: [
+      { href: "/who-we-help/solicitors-law-firms", label: "Legal teams" },
+      { href: "/who-we-help/businesses-individuals", label: "Businesses" },
+      { href: "/how-to-instruct", label: "How to instruct" },
+      { href: "/qualifications", label: "Qualifications" },
+    ],
   },
-  { href: "/case-types/shareholder-disputes", label: "Shareholder Disputes" },
-  { href: "/case-types/fraud-financial-crime", label: "Fraud & Financial Crime" },
-  { href: "/case-types/ma-transaction-disputes", label: "M&A Disputes" },
-  { href: "/case-types/matrimonial-financial-disputes", label: "Matrimonial" },
-  { href: "/case-types", label: "View all 10 →" },
-];
-
-const resourcesCol = [
-  { href: "/guides", label: "Guides" },
-  { href: "/glossary", label: "Glossary" },
-  { href: "/how-to-instruct", label: "How to Instruct" },
-  { href: "/what-is-dispute-accounting", label: "What Is Dispute Accounting?" },
-];
-
-const whoWeHelpCol = [
-  { href: "/who-we-help/solicitors-law-firms", label: "Solicitors & Law Firms" },
   {
-    href: "/who-we-help/businesses-individuals",
-    label: "Businesses & Individuals",
+    label: "Reference",
+    links: [
+      { href: "/guides", label: "Guides" },
+      { href: "/glossary", label: "Glossary" },
+      { href: "/faq", label: "FAQ" },
+      { href: "/what-is-dispute-accounting", label: "Definition" },
+    ],
   },
-  { href: "/qualifications", label: "Qualifications" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-primary text-white">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="mt-auto">
+      <div className="bg-accent px-4 py-8 text-white sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white/80">
-              Services
-            </h3>
-            <ul className="space-y-2">
-              {servicesCol.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <p className="font-display text-xl font-semibold">Instruct an expert</p>
+            <p className="mt-1 max-w-md text-sm text-white/90">
+              Confidential enquiries for litigation, arbitration, and complex financial disputes worldwide.
+            </p>
           </div>
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white/80">
-              Case Types
-            </h3>
-            <ul className="space-y-2">
-              {caseTypesCol.map((link) => (
-                <li key={link.href + link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+          <Link
+            href="/contact"
+            className="inline-flex min-h-[48px] w-full items-center justify-center border-2 border-white bg-white px-6 py-3 text-sm font-bold uppercase tracking-wide text-accent transition-colors hover:bg-white/90 sm:w-auto"
+          >
+            Submit enquiry
+          </Link>
+        </div>
+      </div>
+
+      <div className="bg-primary px-4 py-10 text-white sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-sm">
+              <p className="font-display text-2xl font-semibold leading-tight">
+                Dispute
+                <br />
+                <span className="text-accent">Accounting</span>
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-white/75">
+                Independent expert matching for legal teams and businesses. Not a law firm — no legal advice.
+              </p>
+              <p className="mt-4 text-sm">
+                <SiteEmailLink className="font-medium text-white underline decoration-white/40 underline-offset-4 hover:decoration-white" />
+              </p>
+            </div>
+
+            <div className="min-w-0 flex-1 space-y-6 lg:max-w-2xl">
+              {linkGroups.map((group) => (
+                <div key={group.label}>
+                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/45">
+                    {group.label}
+                  </p>
+                  <ul className="flex flex-wrap gap-2">
+                    {group.links.map((link) => (
+                      <li key={link.href}>
+                        <Link
+                          href={link.href}
+                          className="inline-block rounded-sm border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/90 transition-colors hover:border-accent hover:bg-white/10 hover:text-white"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white/80">
-              Resources
-            </h3>
-            <ul className="space-y-2">
-              {resourcesCol.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white/80">
-              Who We Help
-            </h3>
-            <ul className="space-y-2">
-              {whoWeHelpCol.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div className="mt-10 border-t border-white/20 pt-8">
-          <p className="text-sm text-white/70">
-            <span className="text-white/80">Email: </span>
-            <SiteEmailLink className="font-medium text-white hover:underline" />
-          </p>
-          <p className="mt-3 text-sm text-white/60">
-            DisputeAccounting.com connects legal teams and businesses with dispute
-            accounting experts. We are not a law firm and do not provide legal
-            advice.
-          </p>
-          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/60">
+      <div className="border-t border-white/10 bg-[#12102e] px-4 py-4 text-white/55 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2025 DisputeAccounting</p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <Link href="/privacy" className="hover:text-white">
-              Privacy Policy
+              Privacy
             </Link>
             <Link href="/cookies" className="hover:text-white">
-              Cookie Policy
+              Cookies
             </Link>
             <Link href="/terms" className="hover:text-white">
-              Terms of Use
+              Terms
             </Link>
             <CookieSettingsButton />
           </div>
-          <p className="mt-4 text-sm text-white/50">
-            © 2025 DisputeAccounting.
-          </p>
         </div>
       </div>
     </footer>
