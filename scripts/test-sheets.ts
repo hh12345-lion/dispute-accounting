@@ -9,6 +9,7 @@ import {
   getSpreadsheetInfo,
   readRows,
 } from "../src/lib/google-sheets";
+import { getSiteDomain } from "../src/lib/leadNotification";
 import { BRAND_NAME, buildLeadSheetRow } from "../src/lib/lead-submission";
 
 function loadEnvLocal() {
@@ -48,20 +49,17 @@ async function test() {
   }
 
   try {
-    const row = buildLeadSheetRow({
-      fullName: "Test Entry",
-      email: "test@example.com",
-      phone: "+447700900000",
-      organisation: "Test Firm LLP",
-      audienceType: "Solicitor/Law Firm",
-      disputeType: "Shareholder Dispute",
-      roleNeeded: "Expert Witness (CPR Part 35)",
-      legalFramework: "CPR Part 35 (civil)",
-      claimValue: "£500k–£5M",
-      deadline: "2026-06-01",
-      urgency: "Planning ahead",
-      description: "Test row from scripts/test-sheets.ts",
-    });
+    const row = buildLeadSheetRow(
+      {
+        fullName: "Test Entry",
+        email: "test@example.com",
+        phone: "+447700900000",
+        formType: "contact",
+        organisation: "Test Firm LLP",
+        description: "Test row from scripts/test-sheets.ts",
+      },
+      getSiteDomain()
+    );
     const result = await appendRow(row);
     console.log("✅ Row written:", result.updatedRange);
     console.log("   Brand:", BRAND_NAME);

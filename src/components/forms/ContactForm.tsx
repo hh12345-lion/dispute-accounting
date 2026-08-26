@@ -8,8 +8,8 @@ const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
 const formspreeUrl = formspreeId ? `https://formspree.io/f/${formspreeId}` : null;
 
 /**
- * Minimal enquiry form → POST /api/submit-lead → Google Sheets + optional webhook.
- * Formspree fallback when backend env vars are not configured on Netlify.
+ * Minimal enquiry form → POST /api/submit-lead → n8n webhook (five-key payload).
+ * Formspree fallback when Lead_notification_url is not configured.
  */
 export function ContactForm() {
   const router = useRouter();
@@ -40,6 +40,8 @@ export function ContactForm() {
     const leadPayload = {
       fullName: String(data.get("name") || "").trim(),
       email: String(data.get("email") || "").trim(),
+      phone: "",
+      formType: "contact" as const,
       organisation: String(data.get("organisation") || "").trim(),
       description: String(data.get("message") || "").trim(),
     };
