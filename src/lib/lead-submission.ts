@@ -3,18 +3,22 @@ import { BRAND_NAME, type LeadWebhookInput } from "@/lib/leadNotification";
 
 export { BRAND_NAME };
 
-/** Row 1 headers on GOOGLE_SHEET_TAB_NAME, must match buildLeadSheetRow column order */
+/** Row 1 headers on one shared GOOGLE_SHEET_TAB_NAME (Form Type distinguishes rows) */
 export const LEAD_SHEET_HEADERS = [
   "Timestamp",
+  "Brand Name",
+  "Form Type",
   "Full Name",
   "Email",
   "Phone Number",
-  "Form Type",
   "Organisation",
   "Message",
-  "Brand Name",
   "Domain",
 ] as const;
+
+function formTypeLabel(formType?: string): string {
+  return formType === "instruct" ? "Instruct" : "Contact";
+}
 
 export interface LeadSubmission extends LeadWebhookInput {
   organisation?: string;
@@ -66,13 +70,13 @@ export function buildLeadSheetRow(
 ): CellValue[] {
   return [
     new Date().toISOString(),
+    BRAND_NAME,
+    formTypeLabel(lead.formType),
     lead.fullName,
     lead.email,
     formatPhoneForSheet(lead.phone ?? ""),
-    lead.formType ?? "contact",
     lead.organisation ?? "",
     lead.description ?? "",
-    BRAND_NAME,
     domain,
   ];
 }
