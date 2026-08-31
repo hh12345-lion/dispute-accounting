@@ -1,49 +1,23 @@
 import { NextResponse } from "next/server";
-import { isGoogleSheetsConfigured } from "@/lib/google-sheets";
 import {
   getSiteDomain,
   notifyLeadWebhook,
   parseLeadWebhookInput,
 } from "@/lib/leadNotification";
-import { appendLeadToSheet } from "@/lib/lead-submission";
-
-async function softFailAppendSheet(
-  lead: NonNullable<ReturnType<typeof parseLeadWebhookInput>> & {
-    organisation?: string;
-    description?: string;
-  },
-  domain: string,
-  context: string
-): Promise<void> {
-  if (!isGoogleSheetsConfigured()) return;
-
-  try {
-    await appendLeadToSheet(lead, domain);
-  } catch (err) {
-    console.error("Google Sheets error:", {
-      context,
-      message: err instanceof Error ? err.message : "Unknown error",
-      sheetId: `${process.env.GOOGLE_SHEET_ID?.slice(0, 8)}...`,
-      tab: process.env.GOOGLE_SHEET_TAB_NAME,
-      timestamp: new Date().toISOString(),
-    });
-  }
-}
 
 /**
- * Webhook is the primary lead path.
- * Sheets: one shared GOOGLE_SHEET_TAB_NAME + Form Type; soft-fail only.
+ * Webhook-only lead path (primary).
+ * Sheets + email soft-fail via /api/contact (shared tab + Form Type).
  */
 export async function POST(request: Request) {
   const webhookUrl =
     process.env.Lead_notification_url || process.env.LEAD_NOTIFICATION_URL;
-  const sheetsConfigured = isGoogleSheetsConfigured();
 
-  if (!webhookUrl?.trim() && !sheetsConfigured) {
+  if (!webhookUrl?.trim()) {
     return NextResponse.json(
       {
-        error: "NOT_CONFIGURED",
-        message: "Set Lead_notification_url and/or Google Sheets env vars.",
+        error: "WEBHOOK_MISSING",
+        message: "Lead_notification_url / LEAD_NOTIFICATION_URL is not set.",
       },
       { status: 503 }
     );
@@ -64,38 +38,16 @@ export async function POST(request: Request) {
     );
   }
 
-  const domain = getSiteDomain();
-  const sheetLead = {
-    ...lead,
-    organisation:
-      body && typeof body === "object"
-        ? String((body as Record<string, unknown>).organisation || "").trim()
-        : "",
-    description:
-      body && typeof body === "object"
-        ? String(
-            (body as Record<string, unknown>).description ||
-              (body as Record<string, unknown>).message ||
-              ""
-          ).trim()
-        : "",
-  };
-
-  if (webhookUrl?.trim()) {
-    const webhookOk = await notifyLeadWebhook(lead, webhookUrl);
-    if (!webhookOk) {
-      return NextResponse.json(
-        { error: "Failed to deliver lead" },
-        { status: 502 }
-      );
-    }
-
-    // Soft-fail Sheets — never fail the user after webhook success.
-    await softFailAppendSheet(sheetLead, domain, "submit-lead");
-    return NextResponse.json({ ok: true });
+  const webhookOk = await notifyLeadWebhook(lead, webhookUrl);
+  if (!webhookOk) {
+    return NextResponse.json(
+      { error: "Failed to deliver lead" },
+      { status: 502 }
+    );
   }
 
-  // Sheets-only fallback (local/dev): soft-fail so broken Sheets does not hard-block.
-  await softFailAppendSheet(sheetLead, domain, "submit-lead-sheets-only");
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({
+    ok: true,
+    domain: getSiteDomain(),
+  });
 }

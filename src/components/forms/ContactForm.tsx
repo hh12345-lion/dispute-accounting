@@ -4,31 +4,14 @@ import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { SiteEmailLink } from "@/components/SiteEmailLink";
 
-const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
-const formspreeUrl = formspreeId ? `https://formspree.io/f/${formspreeId}` : null;
-
 /**
- * Minimal enquiry form → POST /api/submit-lead → n8n webhook (five-key payload).
- * Formspree fallback when Lead_notification_url is not configured.
+ * Webhook primary (/api/submit-lead), then soft-fail Sheets + email (/api/contact)
+ * on one shared tab with Form Type.
  */
 export function ContactForm() {
   const router = useRouter();
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  async function submitToFormspree(form: HTMLFormElement): Promise<boolean> {
-    if (!formspreeUrl) return false;
-    try {
-      const res = await fetch(formspreeUrl, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(form),
-      });
-      return res.ok;
-    } catch {
-      return false;
-    }
-  }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -53,33 +36,37 @@ export function ContactForm() {
     }
 
     try {
-      const res = await fetch("/api/submit-lead", {
+      // Webhook primary — hard-fail only if notification endpoint rejects.
+      const webhookRes = await fetch("/api/submit-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: leadPayload.fullName,
+          email: leadPayload.email,
+          phone: leadPayload.phone,
+          formType: leadPayload.formType,
+        }),
+      });
+
+      if (!webhookRes.ok) {
+        setStatus("error");
+        setErrorMessage(
+          webhookRes.status === 503
+            ? "Lead delivery is not configured. Please email us directly."
+            : "Something went wrong. Please try again or email us directly."
+        );
+        return;
+      }
+
+      // Soft-fail Sheets + email — never block thank-you after webhook success.
+      void fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(leadPayload),
-      });
+      }).catch(() => {});
 
-      if (res.ok) {
-        router.push("/thank-you");
-        return;
-      }
-
-      if (res.status === 503 && (await submitToFormspree(form))) {
-        router.push("/thank-you");
-        return;
-      }
-
-      setStatus("error");
-      setErrorMessage(
-        res.status === 503
-          ? "Lead delivery is not configured. Please email us directly."
-          : "Something went wrong. Please try again or email us directly."
-      );
+      router.push("/thank-you");
     } catch {
-      if (await submitToFormspree(form)) {
-        router.push("/thank-you");
-        return;
-      }
       setStatus("error");
       setErrorMessage("Something went wrong. Please try again or email us directly.");
     }
