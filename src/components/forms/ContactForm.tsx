@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { SiteEmailLink } from "@/components/SiteEmailLink";
 
 /**
- * Webhook primary (/api/submit-lead), then soft-fail Sheets + email (/api/contact)
- * on one shared tab with Form Type.
+ * Webhook + Sheets via /api/submit-lead (primary).
+ * Optional /api/contact is awaited when available (soft-fail).
  */
 export function ContactForm() {
   const router = useRouter();
@@ -36,16 +36,10 @@ export function ContactForm() {
     }
 
     try {
-      // Webhook primary — hard-fail only if notification endpoint rejects.
       const webhookRes = await fetch("/api/submit-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: leadPayload.fullName,
-          email: leadPayload.email,
-          phone: leadPayload.phone,
-          formType: leadPayload.formType,
-        }),
+        body: JSON.stringify(leadPayload),
       });
 
       if (!webhookRes.ok) {
@@ -58,12 +52,17 @@ export function ContactForm() {
         return;
       }
 
-      // Soft-fail Sheets + email — never block thank-you after webhook success.
-      void fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(leadPayload),
-      }).catch(() => {});
+      // Soft-fail secondary contact path if it exists (do not cancel via navigation).
+      try {
+        await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(leadPayload),
+          keepalive: true,
+        });
+      } catch {
+        /* ignore — submit-lead already handled webhook + Sheets */
+      }
 
       router.push("/thank-you");
     } catch {

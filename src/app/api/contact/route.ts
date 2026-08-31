@@ -27,17 +27,17 @@ export async function POST(request: Request) {
       );
     }
 
-    await writeSubmissionToSheetSafely(
+    const writtenToSheet = await writeSubmissionToSheetSafely(
       () => appendContactToSheet(lead),
       "contact"
     );
 
-    // Soft-fail email: no Resend on this site — log for ops, never fail the request
     try {
       console.log("Contact submission received:", {
         fullName: lead.fullName,
         email: lead.email,
         formType: lead.formType === "instruct" ? "Instruct" : "Contact",
+        writtenToSheet,
         notify: SITE_EMAIL,
       });
     } catch (err) {
@@ -47,10 +47,17 @@ export async function POST(request: Request) {
     return NextResponse.json({
       ok: true,
       success: true,
+      writtenToSheet,
       message: "Inquiry logged securely.",
     });
   } catch (error) {
     console.error("contact error:", error);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    // Soft-succeed so thank-you is not blocked if this route is reachable.
+    return NextResponse.json({
+      ok: true,
+      success: true,
+      writtenToSheet: false,
+      soft: true,
+    });
   }
 }
