@@ -2,14 +2,24 @@ import { google, sheets_v4 } from "googleapis";
 
 function normalizePrivateKey(raw: string | undefined): string | undefined {
   if (!raw) return undefined;
+
   let key = raw.trim();
+
   if (
     (key.startsWith('"') && key.endsWith('"')) ||
     (key.startsWith("'") && key.endsWith("'"))
   ) {
-    key = key.slice(1, -1);
+    key = key.slice(1, -1).trim();
   }
-  return key.replace(/\\n/g, "\n");
+
+  // Netlify / .env often store PEM as one line with literal \n
+  key = key.replace(/\\n/g, "\n");
+
+  if (!key.includes("-----BEGIN") && key.includes("\\n")) {
+    key = key.replace(/\\\\n/g, "\n");
+  }
+
+  return key;
 }
 
 function getAuthClient() {
@@ -60,7 +70,7 @@ export async function appendRow(
 
   const response = await sheets.spreadsheets.values.append({
     spreadsheetId,
-    range: `${sheetName}!A:A`,
+    range: `${sheetName}!A:I`,
     valueInputOption: "USER_ENTERED",
     insertDataOption: "INSERT_ROWS",
     requestBody: {

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isGoogleSheetsConfigured } from "@/lib/google-sheets";
 import {
   getSiteDomain,
   notifyLeadWebhook,
@@ -10,13 +11,29 @@ import {
   writeSubmissionToSheetSafely,
 } from "@/lib/sheetSubmissions";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 /**
- * Webhook primary, then soft-fail Sheets on the same request.
- * (Live /api/contact was 404 on Netlify — sheet writes must not depend on it alone.)
+ * Delivers leads via n8n webhook and/or Google Sheets.
+ * Webhook and Sheets are independent — either success is enough for the user.
  */
 export async function POST(request: Request) {
   const webhookUrl =
     process.env.Lead_notification_url || process.env.LEAD_NOTIFICATION_URL;
+  const sheetsConfigured = isGoogleSheetsConfigured();
+
+  if (!webhookUrl?.trim() && !sheetsConfigured) {
+    console.error("[submit-lead] NOT_CONFIGURED — no webhook URL and no Sheets env");
+    return NextResponse.json(
+      {
+        error: "NOT_CONFIGURED",
+        message:
+          "Set Lead_notification_url and/or GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY, GOOGLE_SHEET_ID on Netlify.",
+      },
+      { status: 503 }
+    );
+  }
 
   let body: unknown;
   try {
@@ -35,38 +52,37 @@ export async function POST(request: Request) {
 
   let webhookOk = false;
   if (webhookUrl?.trim()) {
-    webhookOk = await notifyLeadWebhook(lead, webhookUrl);
+    webhookOk = await notifyLeadWebhook(lead, webhookUrl.trim());
     if (!webhookOk) {
-      return NextResponse.json(
-        { error: "Failed to deliver lead" },
-        { status: 502 }
-      );
+      console.error("[submit-lead] webhook failed — will still attempt Sheets");
     }
-  } else {
-    console.warn(
-      "[submit-lead] Lead_notification_url not set — continuing with Sheets fallback"
-    );
   }
 
-  // Soft-fail Sheets on this path so thank-you + sheet stay in sync.
-  const sheetLead = parseLeadBody(body) ?? {
-    ...lead,
-    organisation: "",
-    description: "",
-  };
+  const sheetLead =
+    parseLeadBody(body) ?? {
+      ...lead,
+      organisation: "",
+      description: "",
+    };
+
   const writtenToSheet = await writeSubmissionToSheetSafely(
     () => appendContactToSheet(sheetLead),
     "submit-lead"
   );
 
   if (!webhookOk && !writtenToSheet) {
+    console.error("[submit-lead] both webhook and Sheets failed", {
+      webhookConfigured: Boolean(webhookUrl?.trim()),
+      sheetsConfigured,
+      domain: getSiteDomain(),
+    });
     return NextResponse.json(
       {
-        error: "Lead storage is not configured",
+        error: "DELIVERY_FAILED",
         message:
-          "Set Lead_notification_url and/or Google Sheets env vars on Netlify.",
+          "Could not deliver your enquiry. Please email us directly or try again shortly.",
       },
-      { status: 503 }
+      { status: 502 }
     );
   }
 

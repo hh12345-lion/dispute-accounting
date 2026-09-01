@@ -19,7 +19,6 @@ function sharedTab(): SheetTarget {
 export async function appendContactToSheet(
   lead: LeadSubmission
 ): Promise<void> {
-  if (!isGoogleSheetsConfigured()) return;
   await appendRowWithRetry(
     buildLeadSheetRow(lead, getSiteDomain()),
     2,
@@ -30,7 +29,6 @@ export async function appendContactToSheet(
 export async function appendInstructToSheet(
   lead: LeadSubmission
 ): Promise<void> {
-  if (!isGoogleSheetsConfigured()) return;
   await appendRowWithRetry(
     buildLeadSheetRow(
       { ...lead, formType: "instruct" },

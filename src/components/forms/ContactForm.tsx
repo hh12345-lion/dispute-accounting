@@ -4,10 +4,7 @@ import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { SiteEmailLink } from "@/components/SiteEmailLink";
 
-/**
- * Webhook + Sheets via /api/submit-lead (primary).
- * Optional /api/contact is awaited when available (soft-fail).
- */
+/** Single endpoint: webhook + Google Sheets (either success → thank-you). */
 export function ContactForm() {
   const router = useRouter();
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
@@ -36,38 +33,33 @@ export function ContactForm() {
     }
 
     try {
-      const webhookRes = await fetch("/api/submit-lead", {
+      const res = await fetch("/api/submit-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(leadPayload),
       });
 
-      if (!webhookRes.ok) {
-        setStatus("error");
-        setErrorMessage(
-          webhookRes.status === 503
-            ? "Lead delivery is not configured. Please email us directly."
-            : "Something went wrong. Please try again or email us directly."
-        );
+      if (res.ok) {
+        router.push("/thank-you");
         return;
       }
 
-      // Soft-fail secondary contact path if it exists (do not cancel via navigation).
+      let message = "Something went wrong. Please try again or email us directly.";
       try {
-        await fetch("/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(leadPayload),
-          keepalive: true,
-        });
+        const json = (await res.json()) as { message?: string; error?: string };
+        if (json.message) message = json.message;
+        else if (res.status === 503) {
+          message = "Lead delivery is not configured. Please email us directly.";
+        }
       } catch {
-        /* ignore — submit-lead already handled webhook + Sheets */
+        /* use default message */
       }
 
-      router.push("/thank-you");
+      setStatus("error");
+      setErrorMessage(message);
     } catch {
       setStatus("error");
-      setErrorMessage("Something went wrong. Please try again or email us directly.");
+      setErrorMessage("Network error. Please try again or email us directly.");
     }
   }
 

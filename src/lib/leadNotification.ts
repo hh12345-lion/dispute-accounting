@@ -70,9 +70,12 @@ export async function notifyLeadWebhook(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(buildWebhookPayload(lead)),
     });
+    if (!res.ok) {
+      console.error("[webhook] rejected:", res.status, res.statusText);
+    }
     return res.ok;
   } catch (err) {
-    console.error("Lead webhook failed:", err);
+    console.error("[webhook] request failed:", err);
     return false;
   }
 }

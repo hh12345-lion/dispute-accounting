@@ -4,12 +4,11 @@ import {
   appendContactToSheet,
   writeSubmissionToSheetSafely,
 } from "@/lib/sheetSubmissions";
-import { SITE_EMAIL } from "@/lib/site";
 
-/**
- * Soft-fail Sheets (one shared GOOGLE_SHEET_TAB_NAME + Form Type) and soft-fail email.
- * Always succeeds after validation so /api/submit-lead remains the primary lead path.
- */
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+/** Alternate Sheets-only endpoint (same row shape as submit-lead). */
 export async function POST(request: Request) {
   try {
     let body: unknown;
@@ -32,32 +31,12 @@ export async function POST(request: Request) {
       "contact"
     );
 
-    try {
-      console.log("Contact submission received:", {
-        fullName: lead.fullName,
-        email: lead.email,
-        formType: lead.formType === "instruct" ? "Instruct" : "Contact",
-        writtenToSheet,
-        notify: SITE_EMAIL,
-      });
-    } catch (err) {
-      console.error("Contact email soft-fail:", err);
-    }
-
     return NextResponse.json({
       ok: true,
-      success: true,
       writtenToSheet,
-      message: "Inquiry logged securely.",
     });
   } catch (error) {
-    console.error("contact error:", error);
-    // Soft-succeed so thank-you is not blocked if this route is reachable.
-    return NextResponse.json({
-      ok: true,
-      success: true,
-      writtenToSheet: false,
-      soft: true,
-    });
+    console.error("[contact] unexpected error:", error);
+    return NextResponse.json({ ok: false, writtenToSheet: false }, { status: 500 });
   }
 }
