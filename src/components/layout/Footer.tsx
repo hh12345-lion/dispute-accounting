@@ -27,6 +27,7 @@ const linkGroups = [
       { href: "/guides", label: "Guides" },
       { href: "/glossary", label: "Glossary" },
       { href: "/faq", label: "FAQ" },
+      { href: "/experts", label: "Experts" },
       { href: "/what-is-dispute-accounting", label: "Definition" },
     ],
   },
