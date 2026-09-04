@@ -10,7 +10,15 @@
 # POST /api/submit-lead: Next.js route (webhook-only) via @netlify/plugin-nextjs.
 # Soft-fail Sheets/email: POST /api/contact (shared tab + Form Type).
 # Uncomment for function-only deploys without src/app/api/submit-lead/route.ts:
-# [[redirects]]
+# # AHREFS_WWW_APEX_REDIRECT — flatten https://www → apex (reduces Ahrefs redirect-chain)
+[[redirects]]
+  from = "/*"
+  to = "https://disputeaccounting.com/:splat"
+  status = 301
+  force = true
+  conditions = {Host = ["www.disputeaccounting.com"]}
+
+[[redirects]]
 #   from = "/api/submit-lead"
 #   to = "/.netlify/functions/submit-lead"
 #   status = 200
