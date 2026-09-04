@@ -29,17 +29,17 @@ export const caseTypes: ContentPage[] = [
       },
     ],
     relatedLinks: [
-      { href: "/services#lost-profits", label: "Lost Profits Quantification" },
+      { href: "/services#loss-quantification", label: "Lost Profits Quantification" },
       {
-        href: "/services#consequential-loss",
+        href: "/services#loss-quantification",
         label: "Consequential Loss Assessment",
       },
       {
-        href: "/guides/lost-profits-but-for-methodology",
+        href: "/guides/loss-quantification-guide",
         label: "But-For Methodology Guide",
       },
       {
-        href: "/guides/hadley-v-baxendale-remoteness-guide",
+        href: "/guides/loss-quantification-guide",
         label: "Hadley v Baxendale Guide",
       },
     ],
@@ -72,7 +72,7 @@ export const caseTypes: ContentPage[] = [
       },
     ],
     relatedLinks: [
-      { href: "/services#expert-determination", label: "Expert Determination" },
+      { href: "/services#expert-witness-reports", label: "Expert Determination" },
       {
         href: "/case-types/fraud-financial-crime",
         label: "Fraud & Financial Crime",
@@ -109,13 +109,13 @@ export const caseTypes: ContentPage[] = [
       },
     ],
     relatedLinks: [
-      { href: "/services#lost-profits", label: "Loss Quantification" },
+      { href: "/services#loss-quantification", label: "Loss Quantification" },
       {
         href: "/case-types/shareholder-disputes",
         label: "Shareholder Disputes",
       },
       { href: "/how-to-instruct", label: "How to Instruct an Expert" },
-      { href: "/guides/instructing-quantum-expert-letter", label: "Instruction Letter Guide" },
+      { href: "/guides/instructing-dispute-accountant", label: "Instruction Letter Guide" },
     ],
   },
   {
@@ -144,8 +144,8 @@ export const caseTypes: ContentPage[] = [
       },
     ],
     relatedLinks: [
-      { href: "/services#lost-profits", label: "Lost Profits Quantification" },
-      { href: "/services#expert-determination", label: "Expert Determination" },
+      { href: "/services#loss-quantification", label: "Lost Profits Quantification" },
+      { href: "/services#expert-witness-reports", label: "Expert Determination" },
       {
         href: "/case-types/commercial-contract-disputes",
         label: "Commercial Contract Disputes",
@@ -181,7 +181,7 @@ export const caseTypes: ContentPage[] = [
       },
     ],
     relatedLinks: [
-      { href: "/services#expert-determination", label: "Expert Determination" },
+      { href: "/services#expert-witness-reports", label: "Expert Determination" },
       {
         href: "/case-types/partnership-disputes",
         label: "Partnership Disputes",
@@ -227,7 +227,7 @@ export const caseTypes: ContentPage[] = [
         label: "Shareholder Disputes",
       },
       { href: "/how-to-instruct", label: "How to Instruct an Expert" },
-      { href: "/services#lost-profits", label: "Loss Quantification" },
+      { href: "/services#loss-quantification", label: "Loss Quantification" },
     ],
   },
   {
@@ -266,7 +266,7 @@ export const caseTypes: ContentPage[] = [
         href: "/case-types/professional-negligence",
         label: "Professional Negligence",
       },
-      { href: "/services#expert-determination", label: "Expert Determination" },
+      { href: "/services#expert-witness-reports", label: "Expert Determination" },
       { href: "/how-to-instruct", label: "How to Instruct an Expert" },
     ],
   },
@@ -298,11 +298,11 @@ export const caseTypes: ContentPage[] = [
     ],
     relatedLinks: [
       {
-        href: "/services#professional-negligence-damages",
+        href: "/services#loss-quantification",
         label: "Professional Negligence Damages",
       },
       {
-        href: "/guides/professional-negligence-loss-quantification",
+        href: "/guides/what-forensic-accountants-do-disputes",
         label: "Professional Negligence Guide",
       },
       {
@@ -347,7 +347,7 @@ export const caseTypes: ContentPage[] = [
         href: "/case-types/ma-transaction-disputes",
         label: "M&A Transaction Disputes",
       },
-      { href: "/services#expert-determination", label: "Expert Determination" },
+      { href: "/services#expert-witness-reports", label: "Expert Determination" },
       { href: "/how-to-instruct", label: "How to Instruct an Expert" },
     ],
   },
@@ -378,12 +378,12 @@ export const caseTypes: ContentPage[] = [
       },
     ],
     relatedLinks: [
-      { href: "/services#lost-profits", label: "Lost Profits Quantification" },
+      { href: "/services#loss-quantification", label: "Lost Profits Quantification" },
       {
         href: "/case-types/commercial-contract-disputes",
         label: "Commercial Contract Disputes",
       },
-      { href: "/services#expert-determination", label: "Expert Determination" },
+      { href: "/services#expert-witness-reports", label: "Expert Determination" },
       { href: "/how-to-instruct", label: "How to Instruct an Expert" },
     ],
   },

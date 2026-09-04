@@ -15,7 +15,7 @@ export interface LeadWebhookInput {
 export function getSiteDomain(): string {
   const raw =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-    "https://www.disputeaccounting.com";
+    "https://disputeaccounting.com";
 
   try {
     const url = raw.startsWith("http") ? raw : `https://${raw}`;

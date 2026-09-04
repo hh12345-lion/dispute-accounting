@@ -327,7 +327,7 @@ const guides: GuidePage[] = [
     ],
     relatedLinks: [
       {
-        href: "/case-types/earn-out-ma-dispute",
+        href: "/case-types/ma-transaction-disputes",
         label: "Earn-Out & M&A Case Type",
       },
       {

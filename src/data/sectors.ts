@@ -30,11 +30,11 @@ export const sectors: ContentPage[] = [
     ],
     relatedLinks: [
       {
-        href: "/case-types/earn-out-ma-dispute",
+        href: "/case-types/ma-transaction-disputes",
         label: "M&A & Earn-Out Disputes",
       },
       {
-        href: "/case-types/professional-negligence-loss",
+        href: "/case-types/professional-negligence",
         label: "Professional Negligence Loss",
       },
       {
@@ -71,11 +71,11 @@ export const sectors: ContentPage[] = [
     ],
     relatedLinks: [
       {
-        href: "/case-types/construction-quantum-disputes",
+        href: "/case-types/commercial-contract-disputes",
         label: "Construction Quantum Disputes",
       },
       {
-        href: "/services#construction-quantum",
+        href: "/services#loss-quantification",
         label: "Construction Quantum Services",
       },
       {
@@ -111,11 +111,11 @@ export const sectors: ContentPage[] = [
     ],
     relatedLinks: [
       {
-        href: "/case-types/commercial-contract-breach",
+        href: "/case-types/commercial-contract-disputes",
         label: "Commercial Contract Disputes",
       },
       {
-        href: "/case-types/earn-out-ma-dispute",
+        href: "/case-types/ma-transaction-disputes",
         label: "Earn-Out & M&A Disputes",
       },
       {
@@ -152,7 +152,7 @@ export const sectors: ContentPage[] = [
     ],
     relatedLinks: [
       {
-        href: "/case-types/professional-negligence-loss",
+        href: "/case-types/professional-negligence",
         label: "Professional Negligence Loss",
       },
       {
@@ -160,7 +160,7 @@ export const sectors: ContentPage[] = [
         label: "Shareholder Dispute Accounting Guide",
       },
       {
-        href: "/services#professional-negligence-damages",
+        href: "/services#loss-quantification",
         label: "Professional Negligence Damages",
       },
     ],
@@ -193,11 +193,11 @@ export const sectors: ContentPage[] = [
     ],
     relatedLinks: [
       {
-        href: "/case-types/franchise-agreement-breach",
+        href: "/case-types/commercial-contract-disputes",
         label: "Franchise Agreement Breach",
       },
       {
-        href: "/case-types/supply-chain-failure",
+        href: "/case-types/commercial-contract-disputes",
         label: "Supply Chain Failure",
       },
       {
@@ -235,11 +235,11 @@ export const sectors: ContentPage[] = [
     ],
     relatedLinks: [
       {
-        href: "/case-types/supply-chain-failure",
+        href: "/case-types/commercial-contract-disputes",
         label: "Supply Chain Failure",
       },
       {
-        href: "/services#supply-chain-loss",
+        href: "/services#loss-quantification",
         label: "Supply Chain Loss Analysis",
       },
       {

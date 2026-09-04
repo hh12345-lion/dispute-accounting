@@ -2,13 +2,10 @@ import { caseTypeSlugs } from "@/data/case-types";
 import { sectorSlugs } from "@/data/sectors";
 import { guideSlugs } from "@/data/guides";
 
-/**
- * Canonical host for sitemap, robots.txt, and schema @id values.
- * Must match middleware apex → www redirect (disputeaccounting.com → www).
- */
-export const CANONICAL_HOST =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  "https://www.disputeaccounting.com";
+import { getPublicSiteUrl } from "@/lib/site";
+
+/** Canonical host for sitemap, robots.txt, and schema @id values. */
+export const CANONICAL_HOST = getPublicSiteUrl();
 
 /**
  * Indexable static marketing routes.

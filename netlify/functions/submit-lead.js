@@ -16,7 +16,7 @@ function getLeadWebhookUrl() {
 
 function getSiteDomain() {
   const raw = (
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.disputeaccounting.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://disputeaccounting.com"
   ).replace(/\/$/, "");
 
   try {
