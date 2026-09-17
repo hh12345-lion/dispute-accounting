@@ -1,6 +1,7 @@
 import { caseTypeSlugs } from "@/data/case-types";
 import { sectorSlugs } from "@/data/sectors";
 import { guideSlugs } from "@/data/guides";
+import { blogSlugs } from "@/data/blog";
 
 import { getPublicSiteUrl } from "@/lib/site";
 
@@ -25,6 +26,7 @@ export const APP_STATIC_PATHS = [
   "/how-to-instruct",
   "/faq",
   "/guides",
+  "/blog",
   "/experts",
   "/glossary",
   "/cookies",
@@ -50,6 +52,7 @@ export interface PublicUrlInventory {
     caseTypes: number;
     sectors: number;
     guides: number;
+    blogs: number;
     total: number;
   };
 }
@@ -58,9 +61,15 @@ export function buildPublicUrlInventory(): PublicUrlInventory {
   const caseTypePaths = caseTypeSlugs.map((slug) => `/case-types/${slug}`);
   const sectorPaths = sectorSlugs.map((slug) => `/sectors/${slug}`);
   const guidePaths = guideSlugs.map((slug) => `/guides/${slug}`);
+  const blogPaths = blogSlugs.map((slug) => `/blog/${slug}`);
 
   const staticPaths = [...APP_STATIC_PATHS];
-  const dynamicPaths = [...caseTypePaths, ...sectorPaths, ...guidePaths];
+  const dynamicPaths = [
+    ...caseTypePaths,
+    ...sectorPaths,
+    ...guidePaths,
+    ...blogPaths,
+  ];
 
   const excluded = new Set<string>(SITEMAP_EXCLUDED_PATHS);
   const allPaths = [...new Set([...staticPaths, ...dynamicPaths])]
@@ -75,6 +84,7 @@ export function buildPublicUrlInventory(): PublicUrlInventory {
       caseTypes: caseTypePaths.length,
       sectors: sectorPaths.length,
       guides: guidePaths.length,
+      blogs: blogPaths.length,
       total: allPaths.length,
     },
   };
@@ -109,10 +119,10 @@ export function getSitemapPriority(path: string): number {
     return 0.88;
   }
   if (path.startsWith("/case-types/")) return 0.88;
-  if (path === "/faq" || path === "/guides") return 0.87;
+  if (path === "/faq" || path === "/guides" || path === "/blog") return 0.87;
   if (path.startsWith("/sectors/")) return 0.86;
   if (path === "/experts") return 0.8;
-  if (path.startsWith("/guides/")) return 0.8;
+  if (path.startsWith("/guides/") || path.startsWith("/blog/")) return 0.8;
   if (path === "/glossary") return 0.75;
   if (path === "/cookies") return 0.65;
   return 0.7;

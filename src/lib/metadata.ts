@@ -33,12 +33,14 @@ export function createMetadata({
   path = "",
   noindex = false,
   nofollow = false,
+  image,
 }: {
   title: string;
   description: string;
   path?: string;
   noindex?: boolean;
   nofollow?: boolean;
+  image?: string;
 }): Metadata {
   const robots =
     noindex || nofollow
@@ -48,6 +50,7 @@ export function createMetadata({
   const metaDescription = trimDescription(description);
   const metaTitle = trimTitle(title);
   const pageUrl = `${SITE_URL}${path}`;
+  const ogImage = image || DEFAULT_OG_IMAGE;
 
   const googleVerification = process.env.GOOGLE_SITE_VERIFICATION;
   const bingVerification = process.env.BING_SITE_VERIFICATION;
@@ -63,14 +66,14 @@ export function createMetadata({
       url: pageUrl,
       siteName: "DisputeAccounting",
       locale: "en",
-      type: "website",
-      images: [{ url: DEFAULT_OG_IMAGE, alt: "Dispute Accounting" }],
+      type: image ? "article" : "website",
+      images: [{ url: ogImage, alt: metaTitle }],
     },
     twitter: {
       card: "summary_large_image",
       title: metaTitle,
       description: metaDescription,
-      images: [DEFAULT_OG_IMAGE],
+      images: [ogImage],
     },
     robots,
     ...(googleVerification && {

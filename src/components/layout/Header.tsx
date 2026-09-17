@@ -10,6 +10,7 @@ const quickLinks = [
   { href: "/dispute-types", label: "Disputes" },
   { href: "/who-we-help", label: "Who we help" },
   { href: "/guides", label: "Guides" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export function Header() {

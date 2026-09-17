@@ -61,6 +61,7 @@ export const navSectorLinks = sectors.map((s) => ({
 /** Desktop Resources dropdown, Guides, How to Instruct, Qualifications only */
 export const navResourcesMenuLinks = [
   { href: "/guides", label: "Guides" },
+  { href: "/blog", label: "Blog" },
   { href: "/how-to-instruct", label: "How to Instruct" },
   { href: "/qualifications", label: "Qualifications" },
 ];
@@ -68,6 +69,7 @@ export const navResourcesMenuLinks = [
 /** Footer & secondary links */
 export const navResourceLinks = [
   { href: "/guides", label: "Guides" },
+  { href: "/blog", label: "Blog" },
   { href: "/glossary", label: "Glossary" },
   { href: "/faq", label: "FAQ" },
   { href: "/how-to-instruct", label: "How to Instruct" },

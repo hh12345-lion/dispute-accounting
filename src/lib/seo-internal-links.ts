@@ -35,6 +35,14 @@ const STANDARD_GUIDE_LINKS: Link[] = [
   CONTACT_LINK,
 ];
 
+const STANDARD_BLOG_LINKS: Link[] = [
+  { href: "/blog", label: "All Blog Posts" },
+  { href: "/guides", label: "Guides" },
+  DISPUTE_TYPES_LINK,
+  INSTRUCT_LINK,
+  CONTACT_LINK,
+];
+
 export const DISPUTE_TYPES_PAGE_LINKS: Link[] = [
   { href: "/case-types", label: "All Case Types" },
   ...navCaseTypeLinks,
@@ -57,6 +65,7 @@ export const DISPUTE_TYPES_PAGE_LINKS: Link[] = [
 export const HOMEPAGE_SEO_LINKS: Link[] = [
   DISPUTE_TYPES_LINK,
   { href: "/guides", label: "Guides" },
+  { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQ" },
   CONTACT_LINK,
 ];
@@ -250,6 +259,10 @@ export function mergeSectorLinks(slug: string, existing?: Link[]): Link[] {
 
 export function mergeGuideLinks(slug: string, existing?: Link[]): Link[] {
   return mergeLinks(existing, REQUIRED_GUIDE_LINKS[slug] ?? [], STANDARD_GUIDE_LINKS);
+}
+
+export function mergeBlogLinks(_slug: string, existing?: Link[]): Link[] {
+  return mergeLinks(existing, [], STANDARD_BLOG_LINKS);
 }
 
 export function getCaseTypeRelatedServices(page: ContentPage): Link[] {

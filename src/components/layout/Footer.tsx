@@ -25,6 +25,7 @@ const linkGroups = [
     label: "Reference",
     links: [
       { href: "/guides", label: "Guides" },
+      { href: "/blog", label: "Blog" },
       { href: "/glossary", label: "Glossary" },
       { href: "/faq", label: "FAQ" },
       { href: "/experts", label: "Experts" },
