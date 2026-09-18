@@ -54,13 +54,25 @@ export function parseLeadBody(body: unknown): LeadSubmission | null {
 
   const formType = b.formType === "instruct" ? "instruct" : "contact";
 
+  const freeText = opt(
+    b.message ??
+      b.Message ??
+      b.description ??
+      b.enquiry ??
+      b.details ??
+      b.summary ??
+      b.notes ??
+      b.matter
+  );
+
   return {
     fullName,
     email,
     phone: b.phone != null ? String(b.phone).trim() : "",
     formType,
     organisation: opt(b.organisation),
-    description: opt(b.description ?? b.message),
+    description: freeText || opt(b.description ?? b.message),
+    message: freeText,
   };
 }
 

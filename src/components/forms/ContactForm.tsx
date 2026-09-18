@@ -25,6 +25,7 @@ export function ContactForm() {
       formType: "contact" as const,
       organisation: String(data.get("organisation") || "").trim(),
       description: String(data.get("message") || "").trim(),
+      message: String(data.get("message") || "").trim(),
     };
 
     if (!leadPayload.fullName || !leadPayload.email) {

@@ -6,6 +6,8 @@ export interface LeadWebhookInput {
   email: string;
   phone?: string;
   formType?: "contact" | "instruct";
+  /** Free-text enquiry body — always sent to n8n as `message`. */
+  message?: string;
 }
 
 /**
@@ -25,7 +27,7 @@ export function getSiteDomain(): string {
   }
 }
 
-/** Outbound n8n payload — five keys, identical across all brand sites */
+/** Outbound n8n payload — shared keys across brand sites (+ message) */
 export function buildWebhookPayload(lead: LeadWebhookInput) {
   return {
     "Full Name": lead.fullName,
@@ -33,7 +35,27 @@ export function buildWebhookPayload(lead: LeadWebhookInput) {
     "Phone Number": lead.phone ?? "",
     "Brand name": BRAND_NAME,
     domain: getSiteDomain(),
+    message: lead.message ?? "",
   };
+}
+
+function resolveLeadMessage(b: Record<string, unknown>): string {
+  const keys = [
+    "message",
+    "Message",
+    "description",
+    "enquiry",
+    "details",
+    "summary",
+    "notes",
+    "matter",
+  ] as const;
+  for (const key of keys) {
+    if (b[key] != null && String(b[key]).trim()) {
+      return String(b[key]).trim();
+    }
+  }
+  return "";
 }
 
 export function parseLeadWebhookInput(body: unknown): LeadWebhookInput | null {
@@ -57,6 +79,7 @@ export function parseLeadWebhookInput(body: unknown): LeadWebhookInput | null {
     email,
     phone: b.phone != null ? String(b.phone).trim() : "",
     formType,
+    message: resolveLeadMessage(b),
   };
 }
 
